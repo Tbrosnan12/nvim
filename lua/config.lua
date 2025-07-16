@@ -1,4 +1,3 @@
--- bootstrap lazy.nvim
 require("lazy").setup({
   {
     "nvim-treesitter/nvim-treesitter",
@@ -15,11 +14,18 @@ require("lazy").setup({
     "chomosuke/typst-preview.nvim",
     ft = "typst",
     version = "1.*",
-    opts = {open_cmd = "qutebrowser %s",follow_cursor = true,},
+    opts = { open_cmd = "qutebrowser %s", follow_cursor = true },
   },
-  -- add other plugins here as needed
+  {
+    "morhetz/gruvbox",
+    lazy = false, -- load immediately so colorscheme is available
+  },
 })
 
+vim.opt.termguicolors = true
+vim.cmd("colorscheme gruvbox")
+
+-- Your LSP config and keymaps below unchanged
 local lspconfig = require("lspconfig")
 local util = require("lspconfig.util")
 
@@ -40,11 +46,7 @@ vim.api.nvim_create_user_command("OpenPdf", function()
   end
 end, {})
 
--- keybind for OpenPdf
 vim.keymap.set("i", "<C-CR>", "<Esc>:OpenPdf<CR>a", { noremap = true, silent = true })
-
-
---keybind for preview
 
 vim.keymap.set("i", "<C-p>", function()
   vim.cmd("stopinsert")
