@@ -14,7 +14,7 @@ autocmd VimLeave * silent !stty ixon
 "Also toggle between"
 "  highlighting the whole current line (when line numbers are off)"
 "  and highlighting just the bar containing the line numbers."
-noremap! <expr> <C-L>  (&number == 'number') ? '<C-O>:set number<CR><C-O>:highlight CursorLine cterm=NONE<CR>' : '<C-O>:set nonumber<CR><C-O>:highlight CursorLine cterm=inverse<CR>'
+" noremap! <expr> <C-L>  (&number == 'number') ? '<C-O>:set number<CR><C-O>:highlight CursorLine cterm=NONE<CR>' : '<C-O>:set nonumber<CR><C-O>:highlight CursorLine cterm=inverse<CR>'
 
 "Ctrl+Q: Quit all tabs (Ask for saving)."
 "(Saving doesn't work if file has no name.)"
@@ -128,7 +128,8 @@ inoremap <C-k> <C-o>z=
 "map ctrl + m to add word to spell check"
 inoremap <C-j> <C-o>zg
 
- 
+" note there are also some keybinds in lua conf as they are related to lsp
+" stuff
 
 
 
