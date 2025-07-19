@@ -64,3 +64,7 @@ set whichwrap+=<,>,[,]
 
 "Run my Lua config file"
 lua require('config')
+
+"add spellcheck"
+set spelllang=en_us
+set spell

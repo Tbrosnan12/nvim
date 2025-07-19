@@ -2,12 +2,12 @@
 "Lines that start with quotation marks are comments."
 "The first line tricks the editor into using shell script syntax highlighting."
 
-"Keybinds."
+"Key binds."
 
 "Allow us to use Ctrl+S and Ctrl-Q as keybinds"
 silent !stty -ixon
 
-"Restore default behaviour when leaving vim."
+"Restore default behavior when leaving vim."
 autocmd VimLeave * silent !stty ixon
 
 "Ctrl+L: Toggle line numbers."
@@ -31,7 +31,7 @@ noremap! <C-W> <C-O>:q<CR>
 noremap! <C-O> <C-O>:e
 
 "Ctrl+S: Save current file."
-"(Ask for filename if needed.)"
+"(Ask for file name if needed.)"
 noremap! <expr> <C-S>  expand('%:t')  == '' ? '<C-O>:w ':'<C-O>:w<CR>'
 
 "Ctrl+Z: Undo."
@@ -109,11 +109,29 @@ vnoremap <C-C> y:call setreg('+', getreg('"'))<CR>
 "Ctrl+X while in 'visual mode': Cut the selected text."
 vnoremap <C-X> d:call setreg('+', getreg('"'))<CR>
 
+"backspace while in 'visual mode': delete the selected text."
+vnoremap <BS> "_d
+
+
 "Ctrl+V in either mode: Paste."
 "(Also moves the cursor after the pasted text.")
-noremap! <C-V> <C-O>"+gp
+inoremap <C-V> <C-R><C-O>+
 
 
 "Ctrl+A: Select all."
 inoremap <C-A> <Esc><C-L>ggVG`>a
 vnoremap <C-A> <Esc><C-L>ggVG
+
+"map ctrl + k to spell check"
+inoremap <C-k> <C-o>z=
+
+"map ctrl + m to add word to spell check"
+inoremap <C-j> <C-o>zg
+
+ 
+
+
+
+
+
+
