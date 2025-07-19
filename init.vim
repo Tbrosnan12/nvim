@@ -52,9 +52,10 @@ set linebreak        " Don’t split words in the middle"
 "number lines"
 set number
 
-" === Load gruvbox theme ===
-set background=dark      " or light
-colorscheme gruvbox
+" === Load gruvbox theme === no longer needed as gruvbox is now imported in
+" lua config
+"set background=dark      " or light
+"colorscheme gruvbox
 
 "recognise typst"
 autocmd BufNewFile,BufRead *.typ setfiletype typst
