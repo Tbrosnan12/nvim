@@ -21,25 +21,31 @@ require("lazy").setup({
       local cmp = require("cmp")
       local luasnip = require("luasnip")
 
-      cmp.setup({
-        snippet = {
-          expand = function(args)
-            luasnip.lsp_expand(args.body)
-          end,
-        },
-        mapping = cmp.mapping.preset.insert({
-          ["<Tab>"] = cmp.mapping.select_next_item(),
-          ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }),
-        }),
-        sources = {
-          { name = "nvim_lsp" },
-          { name = "luasnip" },
-        },
-      })
+     cmp.setup({
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
     end,
   },
+  mapping = {
+    ["<Tab>"] = cmp.mapping.select_next_item(),
+    ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),
 
+    -- Override <C-p> to launch TypstPreview
+    ["<C-p>"] = cmp.mapping(function(fallback)
+      vim.cmd("stopinsert")
+      pcall(vim.cmd, "TypstPreview")
+      vim.cmd("TypstPreviewFollowCursor")
+      vim.cmd("startinsert")
+    end, { "i" }),
+  },
+  sources = {
+    { name = "nvim_lsp" },
+    { name = "luasnip" },
+  },
+})    end,
+  },
   {
     "chomosuke/typst-preview.nvim",
     ft = "typst",
@@ -91,9 +97,4 @@ end, {})
 
 vim.keymap.set("i", "<C-CR>", "<Esc>:OpenPdf<CR>a", { noremap = true, silent = true })
 
-vim.keymap.set("i", "<C-p>", function()
-  vim.cmd("stopinsert")
-  pcall(vim.cmd, "TypstPreview")
-  vim.cmd("TypstPreviewFollowCursor")
-  vim.cmd("startinsert")
-end, { noremap = true, silent = true })
+
