@@ -128,8 +128,11 @@ inoremap <C-k> <C-o>z=
 "map ctrl + m to add word to spell check"
 inoremap <C-j> <C-o>zg
 
-" note there are also some keybinds in lua conf as they are related to lsp
-" stuff
+" note there are also some keybinds in lua conf as they are related to lsp stuff
+
+" Insert mode: move by visual lines with arrow keys
+inoremap <Up>   <C-o>gk
+inoremap <Down> <C-o>gj
 
 
 
